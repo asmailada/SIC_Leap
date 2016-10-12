@@ -1,11 +1,16 @@
 # SIC_Leap
 
+
 ###Sample.py
 
         options:
                 --train
                 --test
         
+
+<!-- *Change Leapmotion Path*
+
+`sys.path.insert(0, yourSDKPath < ex: "/Users/asmailada/Downloads/LeapDeveloperKit_2.3.1+31549_mac/LeapSDK/lib"> )` -->
 
 *Generate training data*
 

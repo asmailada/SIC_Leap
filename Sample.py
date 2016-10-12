@@ -6,12 +6,14 @@
 # between Leap Motion and you, your company or other organization.             #
 ################################################################################
 import sys
-sys.path.insert(0,"/Users/asmailada/Downloads/LeapDeveloperKit_2.3.1+31549_mac/LeapSDK/lib")
-
+import os
+currentPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, currentPath + "/LeapDeveloperKit_2.3.1+31549_mac/LeapSDK/lib")
+# print currentPath + "/LeapDeveloperKit_2.3.1+31549_mac/LeapSDK/lib"
 import Leap, sys, thread, time
 from Leap import CircleGesture, KeyTapGesture, ScreenTapGesture, SwipeGesture
 
-import os
+
 import numpy as np
 import pylab as pl
 import glob
