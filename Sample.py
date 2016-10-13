@@ -131,8 +131,8 @@ class SampleListener(Leap.Listener):
                             sample.append(prevP)
                             sample.append(nextP)
 
-                            if(sys.argv[1]=="--train"):
-                                print "%f %f" % (prevP,nextP)
+                            #if(sys.argv[1]=="--train"):
+                            #    print "%f %f" % (prevP,nextP)
                                 
         # Get tools
         for tool in frame.tools:
@@ -227,8 +227,7 @@ class SampleListener(Leap.Listener):
                 """
         if not (frame.hands.is_empty and frame.gestures().is_empty):
             print ""
-
-        if(sys.argv[1]=="--test"):
+        if len(sample)!=0:
             samples.insert(0,sample)
             enumm = dict({0:"paper",1:"scissor",2:"stone"})
             if len(self.predict_buf) >= 10:
