@@ -34,6 +34,8 @@ class SampleListener(Leap.Listener):
     bone_names = ['Metacarpal', 'Proximal', 'Intermediate', 'Distal']
     state_names = ['STATE_INVALID', 'STATE_START', 'STATE_UPDATE', 'STATE_END']
     svc = joblib.load('model.pkl')
+    predict_buf = []
+    answer = ""
 
     def on_init(self, controller):
         #print "Initialized"
@@ -229,8 +231,14 @@ class SampleListener(Leap.Listener):
         if(sys.argv[1]=="--test"):
             samples.insert(0,sample)
             enumm = dict({0:"paper",1:"scissor",2:"stone"})
+            if len(self.predict_buf) >= 10:
+                self.predict_buf = []
+            self.predict_buf += [enumm[i] for i in self.svc.predict(samples)]
 
-            print "Predict: ",[enumm[i] for i in self.svc.predict(samples)]
+            self.answer = max(set(self.predict_buf),key=self.predict_buf.count)
+            print self.answer
+            #print self.predict_buf
+            #print "Predict: ",[enumm[i] for i in self.svc.predict(samples)]
 
     def state_string(self, state):
         if state == Leap.Gesture.STATE_START:
@@ -245,7 +253,7 @@ class SampleListener(Leap.Listener):
         if state == Leap.Gesture.STATE_INVALID:
             return "STATE_INVALID"
 
-def main():
+def predict():
 
     # Create a sample listener and controller
     listener = SampleListener()
@@ -265,5 +273,5 @@ def main():
         controller.remove_listener(listener)
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    predict()
