@@ -271,6 +271,9 @@ def predict():
         # Remove the sample listener when done
         controller.remove_listener(listener)
 
+def getAnswer():
+    return listener.answer
 
-#if __name__ == "__main__":
+
+# if __name__ == "__main__":
 #    predict()
